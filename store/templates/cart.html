@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+        <!-- main details -->
+        <div class="row">
+            <!-- details -->
+            <div class="col-md-9">
+                <!-- customer detail -->
+              {% for x in cdata %}
+              {% if x in forloop.counter == 1 %}
+                <div class="card" style="width: 100%;border: solid;">
+                    <div class="card-header">
+                        <h4><strong>Customer details</strong></h4>
+                      </div>
+                    <div class="card-body">
+                      <p class="card-text"><strong>Customer Name :</strong> Anonymous customer</p>
+                      <p class="card-text"><strong>Email ID :</strong> xyz@gmai.com</p>
+                      <p class="card-text"><Strong>Mobile : 9876543211</Strong></p>
+                    </div>
+                  </div>
+              {% endif %}
+              {% endfor %}
+                  <hr>
+              {% for x in cdata %}
+                  <div>
+                    <div class="card shadow-lg" style="width: 100%;border: solid;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{ x.pid.pimage.url }}" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <br>
+                                    {% if x.cat == '1' %}
+                                    <strong>Category :- </strong>Mobile
+                                    {% elif x.cat == '2' %}
+                                    <strong>Category :- </strong>Shoe
+                                    {% else %}
+                                    <strong>Category :- </strong>Choths
+                                    {% endif %}
+                                    <p class="card-text"><strong>Piece :</strong>{{x.pid.price}}</p>
+                                    <p>
+                                      <strong>qty:</strong>
+                                      <a href="/qty/0/{{x.pid.id}}"><button class="btn btn-danger">-</button></a>
+                                      <input type="text" value="{{x.qty}}">
+                                      <a href="/qty/1/{{x.pid.id}}"><button class="btn btn-danger">+</button></a>
+                                    </p>
+                                    <a href="/remove/{{x.id}}"><button type="submit" class="btn btn-danger">Remove</button></a>
+                                    
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              {% endfor %}
+                  <br>
+                  <div>
+                    <div class="card shadow-lg" style="width: 100%;border: solid;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{% static 'images/Screenshot_20221112_230903.png' %}" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <br>
+                                    <p class="card-text"><strong>Name :</strong> Silver Necklace</p>
+                                    <p class="card-text"><strong>Piece :</strong> 1 </p>
+                                    <p class="card-text"><Strong>Categort : </Strong>Necklace</p>
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+            <!-- payment details -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                      Payment Details
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Price :</strong>{{total}}</p>
+                        
+                        <hr>
+                        <p class="card-title"><Strong>Total Price:</Strong>{{total}}</p>
+                        <hr>
+                      <a href="/placeorder" class="btn btn-success">Place order</a>
+                    </div>
+                  </div>
+                  <br>
+                  <a href="index.html" class="btn btn-info">Shop more</a>
+            </div>
+
+            
+
+        </div>
+
+{% endblock 'main' %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!--
+    <p><strong>user :</strong>{{user}}</p>
+    <hr>
+    <h4>Decision</h4>
+    {% if x > y %}
+        <p>{{x}} is greater</p>
+    {% else %}
+        <p>{{y}} is greater</p>
+    {% endif %}
+    <h5>for loop</h5>
+    <br>
+    {% for x,y in d.items %}
+        {{x}}------{{y}} <br>
+    {% endfor %}
+    <br>
+    {% for x in data %}
+        {{x}}  <br>
+    {% endfor %}
+
+    <br>
+-->
+    <table border="1" align="center">
+        <center>
+            <h1>Dashbord</h1>
+        </center>
+        <tr>
+            <th>ID</th>
+
+            <th>product name</th>
+            <th>price</th>
+            <th>qty</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <tr>
+            {% for x in products %}
+            <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.price}}</td>
+                <td>{{x.qty}}</td>
+                <td><a href="/edit/{{x.id}}">Edit</a></td>
+                <td><a href="/delete/{{x.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+            </tr>
+
+        </tr>
+    </table>
+    <br>
+
+    <center>
+        <button><a href="/addproject">Add product</a></button>
+    </center>
+    
+    
+        
+
+  
+</body>
+</html>

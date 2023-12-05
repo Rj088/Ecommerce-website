@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+        <!-- main -->
+        <div class="row mt-3">
+            <!-- product image -->
+            {% for x in products %}
+            <div class="col-md-6">
+                    <h4>Product Image</h4>
+                    <hr>
+                    <img src="{{x.pimage.url}}" alt="" class="ps-5" width="90%">
+            </div>
+            <!-- product details -->
+            <div class="col-md-6">
+                    <h4>Product Details</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-9 mt-5">
+                            <Strong>Product-Name :- </Strong>{{x.name}}
+                            <br><br>
+                            <strong>Product Price :- </strong>{{x.price}}
+                            <br><br>
+                            {% if x.cat == '1' %}
+                            <strong>Category :- </strong>Mobile
+                            {% elif x.cat == '2' %}
+                            <strong>Category :- </strong>Shoe
+                            {% else %}
+                            <strong>Category :- </strong>Choths
+                            {% endif %}
+                            <br><br>
+                            <strong>Product Details :- </strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae eveniet et facilis quod quam explicabo nisi. Et, tempora eum. Aliquid natus architecto praesentium eligendi, beatae nulla obcaecati optio assumenda tempora.
+                            <br><br>
+                            <a href="/addcart/{{x.id}}"><button class="btn btn-success">Add to cart</button></a>
+                            <a href="/cart"><button class="btn btn-info">View Cart</button></a>
+                            <a href="/index"><button class="btn btn-warning">Shop more</button></a>
+                            <br>
+                            {% if success %}
+                        <div class="alert alert-success" role="alert">
+                           {{success}}
+                          </div>
+                        {% endif %}
+                        {% if dup %}
+                        <div class="alert alert-danger" role="alert">
+                           {{dup}}
+                          </div>
+                        {% endif %}
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+
+{% endblock 'main' %}

@@ -1,0 +1,5 @@
+data stored in session is available anywhere in web application 
+sessions are more seccured
+in django session data is stored in a table named as django_session
+login(use_object)
+login function stores a user object in session (it is used to start a session )

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+        <!-- main details -->
+        <div class="row">
+          <!-- details -->
+          <div class="col-md-9">
+              <!-- customer detail -->
+              {% for x in product %}
+              {% if forloop.counter == 1 %}
+              <div class="card" style="width: 100%;border: solid;">
+                  <div class="card-header">
+                      <h4><strong>Customer details</strong></h4>
+                    </div>
+                  <div class="card-body">
+                    <p class="card-text"><strong>Customer Name :</strong> {{x.uid.username}} </p>
+                    <p class="card-text"><strong>Email ID :</strong> {{x.uid.email}}</p>
+                    <p class="card-text"><Strong>Mobile : 9876543211</Strong></p>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <hr>
+                  <div class="bg-danger mt-2 p-2 text-white">
+                    Order Summary
+                  </div>
+                  <br>
+                  {% for x in product %}
+                  <div>
+                    <div class="card shadow-lg" style="width: 100%;border: solid;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{ x.pid.pimage.url }}" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <br>
+                                    <p class="card-text"><strong>Name :</strong> {{x.pid.name}}</p>
+                                    <p class="card-text"><strong>Price :</strong> {{x.pid.price}} </p>
+                                    <p class="card-text">{% if x.pid.cat == '1' %}
+                                      <strong>Category :- </strong>Mobile
+                                      {% elif x.pid.cat == '2' %}
+                                      <strong>Category :- </strong>Shoe
+                                      {% else %}
+                                      <strong>Category :- </strong>Choths
+                                      {% endif %}</p>
+                                      <!-- <p><strong>
+                                        QTY :</strong>
+                                      <a href="/qty/0/{{x.pid.id}}"><button class="btn btn-danger">-</button></a>
+                                        <input title="qty" type="text" value="{{x.qty}}" min="1">
+                                      <a href="/qty/1/{{x.pid.id}}"><button class="btn btn-success">+</button></a>
+                                      </p> -->
+                                      <a href="/remove/{{x.id}}">
+                                      <button type="submit" class="btn btn-danger">add back to cart</button>
+                                      </a>
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+                  <br>
+            </div>
+            <!-- payment details -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                      Payment Details
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Price :</strong>{{total}}</p>
+                        <p class="card-text"><strong>Piece :</strong> {{items}} </p>
+                        <hr>
+                        <p class="card-title"><Strong>Total Price : {{total}}</Strong></p>
+                        <hr>
+                      <a href="/makepayment" class="btn btn-success">Place order</a>
+                    </div>
+                  </div>
+                  <br>
+                  <a href="/index" class="btn btn-info">Shop more</a>
+            </div>
+
+            
+
+        </div>
+
+{% endblock 'main' %}
